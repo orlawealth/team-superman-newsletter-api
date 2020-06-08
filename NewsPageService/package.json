@@ -1,0 +1,20 @@
+{
+  "name": "newspageservice",
+  "version": "1.0.0",
+  "description": "Microservice for view all the newsletters",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hngi/team-superman-newsletter-api/tree/node-solution"
+  },
+  "keywords": [
+    "newssite",
+    "site",
+    "newsletter"
+  ],
+  "author": "Team-superman",
+  "license": "ISC"
+}
