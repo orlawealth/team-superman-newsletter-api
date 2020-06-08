@@ -6,8 +6,11 @@ import subscribeValidation from '../../validation/subscribeValidation';
 
 const router = express.Router();
 
+//init subscribe container
+const subscribeController = new Subscribe();
+
 router
   .route('/subscribe')
-  .post(subscribeValidation.validateData, Subscribe.Subscribe);
+  .post(subscribeValidation.validateData, subscribeController.subscribe);
 
 export default router;
