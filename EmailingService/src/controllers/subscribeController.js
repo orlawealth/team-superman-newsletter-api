@@ -11,9 +11,11 @@ class Subscribe {
    * @param {object} next - next middleware
    * @returns {object} custom response
    */
-  async subscribe(req, res, next) {
+  static async subscribe(req, res, next) {
     try {
-      const { email } = req.user;
+      //Get email from request body
+      const { email } = req.body;
+
       // Action to be performed. Result is stored in 'data'
       const data = await subscribeService.updateUser({
         email,
