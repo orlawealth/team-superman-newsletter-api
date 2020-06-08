@@ -10,7 +10,7 @@ const router = express.Router();
 const subscribeController = new Subscribe();
 
 router
-  .route('/subscribe')
+  .route('/')
   .post(subscribeValidation.validateData, subscribeController.subscribe);
 
 export default router;
