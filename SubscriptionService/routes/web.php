@@ -13,8 +13,8 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/health', function () use ($router) {
+    return response()->json(["status"=>"ok"]);
 });
 $router->post('/subscribe', 'SubscriberController@index');
 $router->post('/unsubscribe', 'SubscriberController@unsubscribe');
