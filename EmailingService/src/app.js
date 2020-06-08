@@ -31,8 +31,8 @@ app.use((req, res, next)=>{
 });
 
 //middleware pipeline
-app.use('/products', productRoutes);
-app.use('/orders',orderRoutes);
+//app.use('/products', productRoutes);
+//app.use('/orders',orderRoutes);
 
 //Error Handling
 app.use((req, res, next)=>{
