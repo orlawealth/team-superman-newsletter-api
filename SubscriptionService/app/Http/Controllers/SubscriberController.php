@@ -9,6 +9,10 @@ class SubscriberController extends Controller
 {
     public function index(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+
         $subscriber = Subscriber::where('Email', '=', $request->email)->first();
         if(!$subscriber) {
             $subscriber = new Subscriber();
@@ -21,6 +25,10 @@ class SubscriberController extends Controller
 
     public function unsubscribe(Request $request)
     {
+        $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+        
         $subscriber = Subscriber::where('Email', '=', $request->email)->first();
         if($subscriber) {
             $subscriber->Status = 0;
