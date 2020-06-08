@@ -17,3 +17,4 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 $router->post('/subscribe', 'SubscriberController@index');
+$router->post('/unsubscribe', 'SubscriberController@unsubscribe');
