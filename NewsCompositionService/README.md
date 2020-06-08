@@ -8,8 +8,7 @@
 
 ## How to Install and run the application
 
-- Clone the application
-- Open the microservice you're working on and run `yarn install`
+- Clone the application and run `yarn install`
 - Run `cp .env.example .env` to create the .env variables and fill them
 - Run `yarn run start:dev` to start development server
 
