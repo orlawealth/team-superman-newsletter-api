@@ -11,7 +11,7 @@ class Subscribe {
    * @param {object} next - next middleware
    * @returns {object} custom response
    */
-  async subscribe(req, res, next) {
+  static async subscribe(req, res, next) {
     try {
       //Get email from request body
       const { email } = req.body;
