@@ -10,23 +10,10 @@
 
 <body>
   <h1>News creation Page</h1>
-    <input id="input" type="text">
+   <textarea id="txt-area"></textarea>
   <br><br>
-  <button id="form">Submit form</button>
-<div id="content-div"></div>
-<script>
-
- const form = document.getElementById('form');
-  const contentDiv = document.getElementById('content-div');
-  const input=document.getElementById("input");
-
-  form.addEventListener('submit', logSubmit);
-
-  function logSubmit(event) {
-    contentDiv.innerHTML=`<p>${input.innerText}<br></br>${event.timeStamp}</p>`;
-  }
-  
-</script>
+<button id="submit-btn">Submit</button>
+<section id="page"></section>
 </body>
 
 </html>

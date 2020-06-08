@@ -1,15 +1,13 @@
 
 
-  const form = document.getElementById('form');
-  const contentDiv = document.getElementById('content-div');
-  const input=document.getElementById("input");
-
-  form.addEventListener('submit', logSubmit);
-
-  function logSubmit(event) {
-    contentDiv.innerHTML=`<p>${input.innerText}<br></br>${event.timeStamp}</p>`;
-
-    // Save content to db.
-    // Call Email sending service to send out new emails to subscribers
-  }
-  
+ let page=document.getElementById("page");
+ let submit=document.getElementById("submit-btn");
+ let txtarea=document.getElementById("txt-area");
+ 
+ submit.addEventListener("click",onClick);
+ function onClick(){
+     page.innerHTML =`<p>${txtarea.value}</p>`;
+     // save content to data base
+     // call email service to send out the newsletter to all subscribers
+ }
+   
