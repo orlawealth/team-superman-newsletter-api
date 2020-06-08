@@ -9,8 +9,7 @@ const morgan=require('morgan');
 const bodyParser=require('body-parser');
 
 //Route files
-//const productRoutes=require('./api/routes/products');
-//const orderRoutes=require('./api/routes/orders');
+const emailManager=require('./emailManager');
 
 app.use(morgan('dev'));
 
@@ -31,8 +30,7 @@ app.use((req, res, next)=>{
 });
 
 //middleware pipeline
-//app.use('/products', productRoutes);
-//app.use('/orders',orderRoutes);
+app.use('/email', emailManager);
 
 //Error Handling
 app.use((req, res, next)=>{
