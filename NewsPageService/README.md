@@ -25,4 +25,4 @@
 
 ## Contributors
 
-- [Omomurewa George-Ashiru](https://github.com/murewaashiru)
+<!-- - [Name](Github profile) -->
