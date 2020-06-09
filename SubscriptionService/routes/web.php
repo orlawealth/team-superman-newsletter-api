@@ -14,14 +14,14 @@
 */
 
 $router->get('/health', function () use ($router) {
-    return response()->json(["status"=>"ok"]);
+  return response()->json(["status" => "ok"]);
 });
 $router->post('/subscribe', 'SubscriberController@index');
 $router->post('/unsubscribe', 'SubscriberController@unsubscribe');
 
 $router->group(
-    ['middleware' => 'jwt.auth'], 
-    function() use ($router) {
-        $router->get('/subscribers', 'SubscriberController@subscribers');
-    }
+  ['middleware' => 'jwt.auth'],
+  function () use ($router) {
+    $router->get('/subscribers', 'SubscriberController@subscribers');
+  }
 );
