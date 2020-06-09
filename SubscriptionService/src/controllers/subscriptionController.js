@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 /* eslint-disable class-methods-use-this */
 import Response from '../utils/response';
 import subscribeService from '../services/subscribeService';
@@ -21,16 +22,20 @@ class Subscribe {
       const userExist = await subscribeService.getSubscriber({
         email: user.email
       });
-      if (userExist.status === true) {
-        return Response.conflictError(res, 'You are already subscribed');
+      if (userExist) {
+        if (userExist.status === true) {
+          return Response.conflictError(res, 'You are already subscribed');
+        }
+        // Update status if user exists or create a new user
+        if (userExist.status === false) {
+          data = await subscribeService.updateSubscriber(
+            { email: user.email },
+            { status: true }
+          );
+        }
       }
-      // Update status if user exists or create a new user
-      if (userExist.status === false) {
-        data = await subscribeService.updateSubscriber(
-          { email: user.email },
-          { status: true }
-        );
-      } else {
+
+      if (!userExist) {
         data = await subscribeService.createSubscriber(user);
       }
 
@@ -50,8 +55,10 @@ class Subscribe {
   static async unsubscribe(req, res, next) {
     try {
       const { email } = req.body;
+      const user = req.body;
+
       // Check if user exists
-      const userExist = await subscribeService.getSubscriber({
+      const userExist = await subscribeService.getSubscribers({
         email
       });
       if (!userExist) {

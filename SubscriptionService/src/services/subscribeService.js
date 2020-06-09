@@ -25,12 +25,7 @@ class subscribeService {
    */
   static async updateSubscriber(param, data) {
     try {
-      return await Subscription.updateOne(param, data);
-
-      // return await Subscribers.updateOne(data, {
-      //   returning: true,
-      //   where: param
-      // });
+      return await Subscription.findOneAndUpdate(param, data, { new: true });
     } catch (error) {
       throw error;
     }
