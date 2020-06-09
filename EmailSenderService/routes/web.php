@@ -1,4 +1,5 @@
 <?php
+use App\Mail\EmailForQueuing;
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
@@ -14,5 +15,8 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return response()->json(['status'=>'live','message'=>$router->app->version()]);
 });
+
+$router->post('send', 'JobController@enqueue');
+$router->get('failed', 'JobController@failed');
