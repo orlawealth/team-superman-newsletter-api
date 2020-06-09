@@ -8,7 +8,7 @@ use App\Subscriber;
 class SubscriberController extends Controller
 {
     public function index(Request $request)
-    {
+    {   
         $this->validate($request, [
             'email' => 'required|email',
         ]);
@@ -20,7 +20,7 @@ class SubscriberController extends Controller
         }
         $subscriber->Status = 1;
         $subscriber->save();
-        return response()->json($subscriber);  
+        return response()->json($subscriber);
     }
 
     public function unsubscribe(Request $request)
@@ -39,5 +39,10 @@ class SubscriberController extends Controller
             'code' => 404,
             'message' => 'Not found',
         ]], 404);
+    }
+
+    public function subscribers() {
+        $subscribers = $subscriber = Subscriber::where('Status', '=', 1)->get();
+        return response()->json($subscribers);
     }
 }

@@ -18,3 +18,10 @@ $router->get('/health', function () use ($router) {
 });
 $router->post('/subscribe', 'SubscriberController@index');
 $router->post('/unsubscribe', 'SubscriberController@unsubscribe');
+
+$router->group(
+    ['middleware' => 'jwt.auth'], 
+    function() use ($router) {
+        $router->get('/subscribers', 'SubscriberController@subscribers');
+    }
+);
