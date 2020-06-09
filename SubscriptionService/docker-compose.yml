@@ -20,3 +20,4 @@ services:
       DB_DATABASE: subscription
       DB_USERNAME: root
       DB_PASSWORD: 12345
+      JWT_SECRET: hng7
