@@ -8,6 +8,10 @@ const router = express.Router();
 
 router
   .route('/subscribe')
-  .post(subscribeValidation.validateData, Subscribe.Subscribe);
-
+  .post(subscribeValidation.validateData, Subscribe.subscribe);
+router
+  .route('/unsubscribe')
+  .patch(subscribeValidation.validateData, Subscribe.unsubscribe);
+router.route('/active').get(Subscribe.getSubscribers);
+router.route('/').get(Subscribe.getAllSubscribers);
 export default router;

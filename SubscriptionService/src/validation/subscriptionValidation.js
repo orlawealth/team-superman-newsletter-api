@@ -2,9 +2,9 @@
 /* eslint-disable require-jsdoc */
 import Joi from '@hapi/joi';
 import Format from './index';
-import validator from '../utils/Validator';
+import validator from '../utils/validator';
 
-class lessonValidation {
+class subscriptionValidation {
   static validateData(req, res, next) {
     const format = Joi.object().keys(
       {
@@ -16,4 +16,4 @@ class lessonValidation {
   }
 }
 
-export default lessonValidation;
+export default subscriptionValidation;
