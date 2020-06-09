@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Newsletter",
-    "description": "A dockerized micro-service for subscribing for and sending newsletters"
+    "description": "Make company global travel and accommodation easy and convenient for the strong workforce of the savvy members of staff of the Barnes Backstars, by leveraging the modern web."
   },
   "basePath": "/api/v1/",
   "schemes": ["https", "http"],
@@ -26,8 +26,8 @@
   "produces": ["application/json"],
   "tags": [
     {
-      "name": "Subscription",
-      "description": "Subscription Endpoints"
+      "name": "User",
+      "description": "User Endpoints"
     }
   ],
   "paths": {}
