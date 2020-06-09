@@ -5,15 +5,49 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>News site</title>
+  <title>Newsletter creation site</title>
 </head>
 
 <body>
-  <h1>News creation Page</h1>
-   <textarea id="txt-area"></textarea>
-  <br><br>
-<button id="submit-btn">Submit</button>
-<section id="page"></section>
+  <h1>Create Newsletter</h1>
+  <form onsubmit="return API.save()">
+    <input id="name" type"text">
+    <input id="content" type="text">
+    <input type="submit" value="submit">
+  </form>
+  <lable id="lable"></label>
+  <script>
+    const API = (() => {
+      const save = () => {
+        try {
+             const _name = document.querySelector("#name").value;
+             const _content = document.querySelector("#content").value;
+              fetch("http://localhost:9000/email", {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    name: _name,
+                    content: _content
+                  }),
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+              }).then(res=>{
+                console.log(res);
+                console.log("sent");
+              })
+          } catch (e) {
+          console.log(e);
+          console.log('--------------------------');
+        }
+        return false;
+      };
+
+      return {
+        save
+      }
+    })();
+  </script>
 </body>
 
 </html>

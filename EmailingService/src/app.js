@@ -8,9 +8,6 @@ const morgan=require('morgan');
 //Setup body-parser
 const bodyParser=require('body-parser');
 
-//Route files
-const emailManager=require('./emailManager');
-
 app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -30,7 +27,20 @@ app.use((req, res, next)=>{
 });
 
 //middleware pipeline
-app.use('/email', emailManager);
+app.post("/sendemail", (req,res,next)=>{
+    const news={
+        name:req.body.name,
+        content:req.body.content
+    };
+    console.log(news);
+
+    // Get all emails
+    // Send news to all emails
+
+    res.json({
+        message:"sent to all emails"
+    });
+});
 
 //Error Handling
 app.use((req, res, next)=>{
