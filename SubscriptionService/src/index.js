@@ -21,7 +21,8 @@ mongoose
   .connect(process.env.DATABASE_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useCreateIndex: true
   })
   .then(() => {
     console.log('Successfully connected to MongoDB Atlas!');
@@ -32,6 +33,17 @@ mongoose
   });
 
 app.use(routes);
+app.use((error, req, res, next) => {
+  const status = error.status || error.statusCode || 500;
+  const stack =
+    process.env.NODE_ENV === 'production'
+      ? {}
+      : { ...error, stack: error.stack };
+  res.status(status).json({
+    message: error.message,
+    ...stack
+  });
+});
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
