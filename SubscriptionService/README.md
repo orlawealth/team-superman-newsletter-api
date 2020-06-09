@@ -1,6 +1,4 @@
-# TEAM-SUPERMAN
-
-## A dockerized micro-service for subscribing for and sending newsletters
+## A dockerized micro-service for subscribing for newsletters
 
 ## Pre-Requisites
 
