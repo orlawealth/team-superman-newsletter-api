@@ -36,6 +36,14 @@ We just have 3 endpoint
 2. /unsubscribe you can unsubscribe a email. Parameter email and response is id, Email and Status
 3. /subscribers you can get all subscribers with status 1. Just need to send a Bearer token (you need to know the secret to generate a JWT) and respose object array with id, Email and Status
 
+## How to test
+
+We have created a set of test with phpunit inside tests folder. Just run
+
+```bash
+php vendor/bin/phpunit
+```
+
 ## Support
 
 You can send an email to ajdelgados@gmail.com
