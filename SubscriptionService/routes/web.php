@@ -13,6 +13,15 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/health', function () use ($router) {
+    return response()->json(["status"=>"ok"]);
 });
+$router->post('/subscribe', 'SubscriberController@index');
+$router->post('/unsubscribe', 'SubscriberController@unsubscribe');
+
+$router->group(
+    ['middleware' => 'jwt.auth'], 
+    function() use ($router) {
+        $router->get('/subscribers', 'SubscriberController@subscribers');
+    }
+);

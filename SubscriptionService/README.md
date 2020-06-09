@@ -1,24 +1,49 @@
-# Lumen PHP Framework
+# Team Superman - Newsletter - Subscription Service
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Subscription service have a list of emails, you can subscribe, unsubscribe and get all in the list
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## How to run this service with Docker
 
-## Official Documentation
+Just run following commands
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+```bash
+docker build -t subscription .
+docker-compose up
+```
 
-## Contributing
+Whether you need to create tables in mysql
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+docker-compose exec subscription php artisan migrate
+```
 
-## Security Vulnerabilities
+## How to run on your local machine
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+You need to have PHP, composer and mysql. First you need copy .env.example to be .env and set your mysql configurations. Run the following commands
 
-## License
+```bash
+composer install
+php -S localhost:8000 -t public
+```
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Then you can use three endpoints.
+
+## What endpoints are available
+
+We just have 3 endpoint
+
+1. /subscribe you can send a email to subscribe. Parameter email and response is id, Email and Status
+2. /unsubscribe you can unsubscribe a email. Parameter email and response is id, Email and Status
+3. /subscribers you can get all subscribers with status 1. Just need to send a Bearer token (you need to know the secret to generate a JWT) and respose object array with id, Email and Status
+
+## How to test
+
+We have created a set of test with phpunit inside tests folder. Just run
+
+```bash
+php vendor/bin/phpunit
+```
+
+## Support
+
+You can send an email to ajdelgados@gmail.com
