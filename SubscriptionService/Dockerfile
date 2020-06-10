@@ -1,7 +1,10 @@
 FROM php:7.4.6-apache
 
-RUN docker-php-ext-install pdo pdo_mysql
-RUN a2enmod rewrite
+RUN apt-get update && apt-get install -y \
+        libzip-dev \
+        zip && \
+        docker-php-ext-install pdo pdo_mysql zip && \
+        a2enmod rewrite
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public/
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
