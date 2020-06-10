@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-expressions */
-import express from 'express';
+const express =require ('express');
 
-import Subscribe from '../../controllers/subscriptionController';
-import subscribeValidation from '../../validation/subscriptionValidation';
+const Subscribe =require ('../../controllers/subscriptionController');
+const subscribeValidation =require ('../../validation/subscriptionValidation');
 
 const router = express.Router();
 
@@ -14,4 +14,5 @@ router
   .patch(subscribeValidation.validateData, Subscribe.unsubscribe);
 router.route('/active').get(Subscribe.getSubscribers);
 router.route('/').get(Subscribe.getAllSubscribers);
-export default router;
+
+module.exports= router;

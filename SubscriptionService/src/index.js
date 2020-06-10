@@ -1,13 +1,10 @@
-import '@babel/polyfill';
-import express from 'express';
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import mongoose from 'mongoose';
-import routes from './routes';
-
-dotenv.config();
+const express =require('express');
+const bodyParser =require ('body-parser');
+const cors =require ('cors');
+const cookieParser =require('cookie-parser');
+const mongoose =require('mongoose');
+const routes =require('./routes');
+const { DB_URI } = require('./config');
 
 const app = express();
 app.enable('trust proxy');
@@ -18,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 mongoose
-  .connect(process.env.DATABASE_URL, {
+  .connect(process.env.DATABASE_URL|| DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false
@@ -36,4 +33,4 @@ const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 
-export default { app };
+module.exports = { app };

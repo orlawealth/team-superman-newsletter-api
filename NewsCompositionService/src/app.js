@@ -44,6 +44,8 @@ _news.save()
       }
     });
     console.log(result);
+    console.log("news saved successfully");
+    console.log("calls to send email has been sent");
   })
   .catch(err=>{
       console.log(err);

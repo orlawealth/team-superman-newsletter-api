@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import mongoose from 'mongoose';
+const mongoose =require ('mongoose');
 
 const subscriptionSchema = new mongoose.Schema(
   {

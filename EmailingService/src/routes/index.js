@@ -1,21 +1,27 @@
 const express=require('express');
 const fetch=require("node-fetch");
 const nodemailer = require("nodemailer");
+const { response } = require('express');
+const { json } = require('body-parser');
 const router=express.Router();
 
 
-app.post("/sendemail", (req,res)=>{
+router.post("/", (req,res)=>{
     const news={
         name:req.body.name,
         content:req.body.content
     };
     console.log(news);
     // Get all subscribers
-    let endpoint="http://localhost:4000/api/v1/subscription/active";
-    let response= await fetch(endpoint).json();
-    if(response.status == 200){
+    const endpoint="http://localhost:4000/api/v1/subscription/active";
+    fetch(endpoint)
+    .then(res=>res.json())
+    .then(json=>{
+        console.log(json);
+        if(json.status == 200){
         // All receivers emails are listed here
-        let mail_array = response.data;
+        console.log("got subscriptions for subscription service");
+        let mail_array = json.data;
     
         let emailPromiseArray = [];    
         // Preparing the email for each receiver
@@ -23,7 +29,7 @@ app.post("/sendemail", (req,res)=>{
             emailPromiseArray.push(
                 sendMail({
                     from: "teamspiderman5@gmail.com",
-                    to: mail_array[i],
+                    to: mail_array[i].email,
                     subject: "Superman Newsletter",
                     text: news.content
                 })
@@ -40,11 +46,19 @@ app.post("/sendemail", (req,res)=>{
         res.json({
             message:"sent to all emails"
         });
-    }else{
-        res.json({
+        console.log("emails were sent");
+        }
+        else{
+            res.json({
             message:"No emails were sent"
-        });
-    }
+            });
+            console.log("emails were not sent");
+        }
+    })
+    .catch(err=>{
+        console.log(err);
+        console.log("error getting subscribers");
+    })
 });
 
 //Created a useable Transporter object using Gmail    

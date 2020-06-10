@@ -1,7 +1,7 @@
 /* eslint-disable newline-per-chained-call */
-import Joi from '@hapi/joi';
+const Joi =require ('@hapi/joi');
 
-export default {
+module.exports = {
   email: Joi.string()
     .email({
       minDomainSegments: 2,

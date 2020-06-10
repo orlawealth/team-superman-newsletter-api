@@ -1,7 +1,7 @@
-import Response from './response';
-import '@hapi/joi';
+const Response =require ('./response');
+require('@hapi/joi');
 
-export default async (schema, toValidate, res, next) => {
+module.exports = async (schema, toValidate, res, next) => {
   try {
     await schema.validateAsync(toValidate);
     next();

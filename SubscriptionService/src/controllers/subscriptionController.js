@@ -1,7 +1,7 @@
 /* eslint-disable require-jsdoc */
 /* eslint-disable class-methods-use-this */
-import Response from '../utils/response';
-import subscribeService from '../services/subscribeService';
+const Response =require ('../utils/response');
+const subscribeService =require ('../services/subscribeService');
 
 /** Class that handles subscription */
 class Subscribe {
@@ -118,4 +118,4 @@ class Subscribe {
   }
 }
 
-export default Subscribe;
+module.exports= Subscribe;

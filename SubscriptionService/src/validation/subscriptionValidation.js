@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable require-jsdoc */
-import Joi from '@hapi/joi';
-import Format from './index';
-import validator from '../utils/validator';
+const Joi =require ('@hapi/joi');
+const Format =require ('./index');
+const validator =require ('../utils/validator');
 
 class subscriptionValidation {
   static validateData(req, res, next) {
@@ -16,4 +16,4 @@ class subscriptionValidation {
   }
 }
 
-export default subscriptionValidation;
+module.exports= subscriptionValidation;

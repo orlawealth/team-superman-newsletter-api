@@ -1,4 +1,4 @@
-import Subscription from '../models/Subscription';
+const Subscription =require ('../models/Subscription');
 
 /** Class representing SubscribersService */
 class subscribeService {
@@ -62,4 +62,4 @@ class subscribeService {
   }
 }
 
-export default subscribeService;
+module.exports= subscribeService;
