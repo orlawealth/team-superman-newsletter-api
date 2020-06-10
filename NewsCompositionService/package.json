@@ -6,7 +6,7 @@
   "author": "Team Superman",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "license": "MIT",
   "dependencies": {
