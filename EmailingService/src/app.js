@@ -1,6 +1,7 @@
 // Setup Express
 const express=require('express');
 const app=express();
+const index=require('./routes/index');
 
 //Setup morgan
 const morgan=require('morgan');
@@ -26,21 +27,8 @@ app.use((req, res, next)=>{
     next();
 });
 
-//middleware pipeline
-app.post("/sendemail", (req,res,next)=>{
-    const news={
-        name:req.body.name,
-        content:req.body.content
-    };
-    console.log(news);
-
-    // Get all emails
-    // Send news to all emails
-
-    res.json({
-        message:"sent to all emails"
-    });
-});
+//middleware pipeline for sending Email
+app.use("/sendemail", index);
 
 //Error Handling
 app.use((req, res, next)=>{
