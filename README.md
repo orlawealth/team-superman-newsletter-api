@@ -11,7 +11,7 @@
 - Clone the application
 - Open the microservice you're working on and run `yarn install`
 - Run `cp .env.example .env` to create the .env variables and fill them
-- Run `yarn run start:dev` to start development server
+- Start the development server
 
 ## API Documentation
 
@@ -27,3 +27,4 @@
 ## Contributors
 
 - [Omomurewa George-Ashiru](https://github.com/murewaashiru)
+- [Emmanuel Menyaga](https://github.com/mhizterkeyz)

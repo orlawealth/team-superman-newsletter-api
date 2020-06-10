@@ -1,0 +1,65 @@
+{
+  "post": {
+    "tags": ["Subscription"],
+    "summary": "Subscribe for email",
+    "description": "Endpoint for subscribe for email",
+    "operationId": "subscribe",
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "parameters": [
+      {
+        "name": "Subscribe",
+        "in": "body",
+        "description": "To subscribe to reveive newsletter emails",
+        "required": true,
+        "schema": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "rachelle@gmail.com"
+            }
+          }
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Unsubscribed successfully",
+        "examples": {
+          "application/json": {
+            "status": 200,
+            "message": "Unsubscribed successfully",
+            "data": {
+              "_id": "5edfcc144b6e354d7836b44c",
+              "email": "rachelle@gmail.com",
+              "status": false,
+              "createdAt": "2020-06-09T17:51:16.611Z",
+              "updatedAt": "2020-06-10T10:48:50.927Z",
+              "__v": 0
+            }
+          }
+        }
+      },
+      "422": {
+        "description": "Invalid input",
+        "examples": {
+          "application/json": {
+            "data": [
+              {
+                "status": 422,
+                "message": "\"email\" is required",
+                "error": "Validation Error"
+              },
+              {
+                "status": 422,
+                "message": "\"email\" must be a valid email",
+                "error": "Validation Error"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
