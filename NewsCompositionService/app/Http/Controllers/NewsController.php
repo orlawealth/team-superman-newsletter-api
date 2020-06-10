@@ -19,15 +19,19 @@ class NewsController extends Controller
       'bodyText' => 'required',
       'user' => 'required'
     ]);
-    $news = News::create([
+    News::create([
       'title' => $request->title,
       'homeText' => $request->homeText,
       'bodyText' => $request->bodyText,
       'user' => $request->user,
     ]);
 
-    return response()->json($news);
+    $markup = [];
+    $markup['title'] = '<h1>' . $request->title . '</h1>';
+    if ($request->homeText) {
+      $markup['homeText']  = '<p>' . $request->homeText . '</p>';
+    }
+    $markup['bodyText'] = '<p>' . $request->bodyText . '</p>';
+    return response()->json($markup);
   }
-
-  //
 }

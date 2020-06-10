@@ -14,7 +14,7 @@
 */
 
 $router->get('/health', function () use ($router) {
-    return response()->json(["status"=>"ok"]);
+  return response()->json(["status" => "ok"]);
 });
 $router->post('/{topicRequest}/subscribe', 'SubscriberController@index');
 $router->post('/{topicRequest}/unsubscribe', 'SubscriberController@unsubscribe');
