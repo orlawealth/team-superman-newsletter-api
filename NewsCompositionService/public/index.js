@@ -6,8 +6,11 @@
  
  submit.addEventListener("click",onClick);
  function onClick(){
-     page.innerHTML =`<p>${txtarea.value}</p>`;
-     // save content to data base
-     // call email service to send out the newsletter to all subscribers
+     if ( txtarea.value.split(' ').join('') != "" ) {
+        page.innerHTML =`<p>${txtarea.value}</p>`;
+        // save content to data base
+        // call email service to send out the newsletter to all subscribers
+     } else {
+
+     }
  }
-   
