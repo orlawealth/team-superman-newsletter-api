@@ -30,11 +30,11 @@ Then you can use three endpoints.
 
 ## What endpoints are available
 
-We just have 3 endpoint
+We just have 3 endpoint and {topic} is a topic you want to subscribe or get information
 
-1. /subscribe you can send a email to subscribe. Parameter email and response is id, Email and Status
-2. /unsubscribe you can unsubscribe a email. Parameter email and response is id, Email and Status
-3. /subscribers you can get all subscribers with status 1. Just need to send a Bearer token (you need to know the secret to generate a JWT) and respose object array with id, Email and Status
+1. /{topic}/subscribe you can send a email to subscribe. Parameter email and response is id, Email and Status
+2. /{topic}/unsubscribe you can unsubscribe a email. Parameter email and response is id, Email and Status
+3. /{topic}/subscribers you can get all subscribers with status 1. Just need to send a Bearer token (you need to know the secret to generate a JWT) and respose object array with id, Email and Status
 
 ## How to test
 

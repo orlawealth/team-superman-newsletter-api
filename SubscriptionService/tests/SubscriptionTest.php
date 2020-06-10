@@ -14,7 +14,7 @@ class SubscriptionTest extends TestCase
      */
     public function testSubscribe()
     {
-        $this->json('POST', '/subscribe', ['email' => 'test@testsubscribe.com'])
+        $this->json('POST', '/topic/subscribe', ['email' => 'test@testsubscribe.com'])
              ->seeJsonStructure([
                 'id', 'Email', 'Status'
              ])->seeJsonContains([
@@ -29,7 +29,7 @@ class SubscriptionTest extends TestCase
      */
     public function testUnsubscribe()
     {
-        $this->json('POST', '/unsubscribe', ['email' => 'test@testsubscribe.com'])
+        $this->json('POST', '/topic/unsubscribe', ['email' => 'test@testsubscribe.com'])
              ->seeJsonStructure([
                 'id', 'Email', 'Status'
              ])->seeJsonContains([
@@ -45,7 +45,7 @@ class SubscriptionTest extends TestCase
     public function testsubscribers()
     {
         $token = JWT::encode([], env('JWT_SECRET'));
-        $this->json('GET', '/subscribers', [], ['Authorization' => "Bearer $token", 'Content-Type' => 'application/json'])
+        $this->json('GET', '/topic/subscribers', [], ['Authorization' => "Bearer $token", 'Content-Type' => 'application/json'])
             ->seeStatusCode(200)
             ->seeJsonStructure([
                 '*' =>
