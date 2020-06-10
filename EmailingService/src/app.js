@@ -1,15 +1,13 @@
 // Setup Express
 const express=require('express');
 const app=express();
+const index=require('./routes/index');
 
 //Setup morgan
 const morgan=require('morgan');
 
 //Setup body-parser
 const bodyParser=require('body-parser');
-
-//Route files
-const emailManager=require('./emailManager');
 
 app.use(morgan('dev'));
 
@@ -29,8 +27,8 @@ app.use((req, res, next)=>{
     next();
 });
 
-//middleware pipeline
-app.use('/email', emailManager);
+//middleware pipeline for sending Email
+app.use("/sendemail", index);
 
 //Error Handling
 app.use((req, res, next)=>{
