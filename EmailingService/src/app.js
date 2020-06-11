@@ -21,7 +21,7 @@ app.use((req, res, next)=>{
     "Origin, x-Requested-Width,Content-Type,Accept,Authorization,X-Pagination");
     if(req.method==='OPTIONS'){
         res.header("Access-Control-Allow-Methods",
-        "PUT,POST,PATCH,GET,DELETE");
+        "POST,GET");
         return res.status(200).json({});
     }
     next();

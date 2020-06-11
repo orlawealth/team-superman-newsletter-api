@@ -10,6 +10,19 @@ const bodyParser=require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
+//Enabling CORS
+app.use((req, res, next)=>{
+  res.header("Access-Control-Allow-Origin","*");
+  res.header("Access-Control-Allow-Headers",
+  "Origin, x-Requested-Width,Content-Type,Accept,Authorization,X-Pagination");
+  if(req.method==='OPTIONS'){
+      res.header("Access-Control-Allow-Methods",
+      "POST,GET");
+      return res.status(200).json({});
+  }
+  next();
+});
+
 // EXPRESS STATIC MIDDLEWARE - TO SERVE THE FILES IN PUBLIC DIR
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
