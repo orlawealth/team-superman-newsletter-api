@@ -5,24 +5,10 @@
 ## Pre-Requisites
 
 - MongoDB and database created
+- Copy and paste your mongodb connection string in the .\SubscriptionService\src\config.js file
 
 ## How to Install and run the application
 
-- Clone the application and run `yarn install`
-- Run `cp .env.example .env` to create the .env variables and fill them
-- Run `yarn run start:dev` to start development server
-
-## API Documentation
-
-- [Swagger Documentation on Heroku]()
-
-## Technologies Used
-
-- NodeJS / Express
-- Mongo Database
-- Swagger for API Documentation
-- Heroku For Hosting
-
-## Contributors
-
-- [Omomurewa George-Ashiru](https://github.com/murewaashiru)
+- Run "npm install"
+- Run "npm start"
+- This service is served on http://localhost:4000
