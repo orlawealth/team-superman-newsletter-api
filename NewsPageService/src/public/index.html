@@ -15,7 +15,7 @@
     <h1>NEWS LETTERS</h1>
     <ul id="news-list"></ul>
     <script>
-        fetch("http://localhost:9000/news")
+        fetch("http://localhost:6000/news")
         .then(response =>response.json())
         .then(allNews => {
             console.log("Recieved all news");

@@ -13,7 +13,7 @@ mongoose.connect(DB_URI)
 });
 
 
-app.listen(9000, () => {
+app.listen(6000, () => {
   console.log("running on port 9000");
   console.log("--------------------------");
 });
