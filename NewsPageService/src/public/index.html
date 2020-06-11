@@ -14,7 +14,7 @@
         $("#button").click(function(){
           var subEmail = document.querySelector("#email").value;
           let subLabel=document.querySelector("#subId");
-          let endpoint = "http://localhost:4000/api/v1/subscription/subscribe";
+          let endpoint = "http://localhost:11004/api/v1/subscription/subscribe";
           fetch(endpoint,{
             method:"POST",
             body:JSON.stringify({email:subEmail}),
@@ -83,7 +83,7 @@
       </footer>
   </div>
     <script>
-        fetch("http://localhost:8000/news")
+        fetch("http://localhost:11002/news")
         .then(response =>response.json())
         .then(allNews => {
             console.log("Recieved all news");

@@ -13,7 +13,7 @@ mongoose.connect(DB_URI)
 });
 
 
-app.listen(8000, () => {
-  console.log("running on port 8000");
+app.listen(11002, () => {
+  console.log("running on port 11002");
   console.log("--------------------------");
 });
