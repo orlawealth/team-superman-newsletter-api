@@ -1,0 +1,47 @@
+version: '3'
+services:
+  EmailingService:
+    build: './EmailingService'
+    ports:
+      - "3000:7000"
+
+  NewsCompositionService:
+    build: './NewsCompositionService'
+    ports:
+      - "3001:8000"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+
+  NewsPageService:
+    build: './NewsPageService'
+    ports:
+      - "3002:5000"
+
+  SubscriptionService:
+    build: './SubscriptionService'
+    ports:
+      - "3003:4000"
+    depends_on: 
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/microservices
+  
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./web/public:/srv/www/static
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - web
+      - books
+      - search
+      - videos
