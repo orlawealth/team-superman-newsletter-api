@@ -13,7 +13,7 @@ router.post("/", (req,res)=>{
     };
     console.log(news);
     // Get all subscribers
-    const endpoint="http://localhost:11004/api/v1/subscription/active";
+    const endpoint="http://subscriptionservice:11004/api/v1/subscription/active";
     fetch(endpoint)
     .then(res=>res.json())
     .then(json=>{

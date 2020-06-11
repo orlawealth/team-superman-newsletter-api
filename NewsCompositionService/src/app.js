@@ -60,7 +60,7 @@ _news.save()
       message:"News saved successfully"
     });
 
-    fetch("http://localhost:11001/sendemail", {
+    fetch("http://emailingservice:11001/sendemail", {
       method: 'POST',
       body: JSON.stringify({
         name:_news.name,
