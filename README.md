@@ -51,3 +51,4 @@
 
 - [Omomurewa George-Ashiru](https://github.com/murewaashiru)
 - [Ndubuisi Jr Chukuigwe](https://github.com/ndubuisijr)
+- [Emmanuel Menyaga](https://github.com/mhizterkeyz)

@@ -1,7 +1,7 @@
 {
   "name": "superman-newsletter",
   "version": "1.0.0",
-  "description": "A dockerized micro-service for subscribing for and sending newsletters",
+  "description": "A dockerized micro-service for subscribing for newsletters",
   "main": "index.js",
   "author": "Team Superman",
   "scripts": {

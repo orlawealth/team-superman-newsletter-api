@@ -55,7 +55,6 @@ class Subscribe {
   static async unsubscribe(req, res, next) {
     try {
       const { email } = req.body;
-      const user = req.body;
 
       // Check if user exists
       const userExist = await subscribeService.getSubscribers({
