@@ -5,23 +5,11 @@ const fetch = require("node-fetch");
 const mongoose=require("mongoose");
 const News=require("./models/news");
 const bodyParser=require('body-parser');
+const cors=require('cors');
 
-
+app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-
-//Enabling CORS
-app.use((req, res, next)=>{
-  res.header("Access-Control-Allow-Origin","*");
-  res.header("Access-Control-Allow-Headers",
-  "Origin, x-Requested-Width,Content-Type,Accept,Authorization,X-Pagination");
-  if(req.method==='OPTIONS'){
-      res.header("Access-Control-Allow-Methods",
-      "POST,GET");
-      return res.status(200).json({});
-  }
-  next();
-});
 
 // EXPRESS STATIC MIDDLEWARE - TO SERVE THE FILES IN PUBLIC DIR
 app.use(express.static(path.join(__dirname, 'public')));
@@ -60,7 +48,7 @@ _news.save()
       message:"News saved successfully"
     });
 
-    fetch("http://emailingservice:11001/sendemail", {
+    fetch(process.env.EMAILING_SERVER+"/sendemail", {
       method: 'POST',
       body: JSON.stringify({
         name:_news.name,

@@ -14,7 +14,7 @@
         $("#button").click(function(){
           var subEmail = document.querySelector("#email").value;
           let subLabel=document.querySelector("#subId");
-          let endpoint = "http://subscriptionservice:11004/api/v1/subscription/subscribe";
+          let endpoint = process.env.SUBSCRIPTION_SERVER+"/api/v1/subscription/subscribe";
           fetch(endpoint,{
             method:"POST",
             body:JSON.stringify({email:subEmail}),
@@ -83,7 +83,7 @@
       </ul>
   </div>
     <script>
-        fetch("http://newscompositionservice:11002/news")
+        fetch(process.env.NEWS_SERVER+"/news")
         .then(response =>response.json())
         .then(allNews => {
             console.log("Recieved all news");
