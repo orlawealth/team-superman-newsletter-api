@@ -1,11 +1,11 @@
 version: '3'
 services:
-  EmailingService:
+  emailingservice:
     build: './EmailingService'
     ports:
       - "3000:7000"
 
-  NewsCompositionService:
+  newscompositionservice:
     build: './NewsCompositionService'
     ports:
       - "3001:8000"
@@ -14,12 +14,12 @@ services:
     environment:
       - MONGO_DB_URI=mongodb://db/microservices
 
-  NewsPageService:
+  newspageservice:
     build: './NewsPageService'
     ports:
       - "3002:5000"
 
-  SubscriptionService:
+  subscriptionservice:
     build: './SubscriptionService'
     ports:
       - "3003:4000"
@@ -41,7 +41,7 @@ services:
       - ./web/public:/srv/www/static
       - ./default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - web
-      - books
-      - search
-      - videos
+      - emailingservice
+      - newscompositionservice
+      - newspageservice
+      - subscriptionservice
