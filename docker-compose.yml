@@ -19,7 +19,7 @@ services:
     ports:
       - "11001:11001"
     environment:
-      -SUBSCRIPTION_SERVER=http://subscriptionservice:11004
+      - SUBSCRIPTION_SERVER=http://subscriptionservice:11004
 
   newscompositionservice:
     build: './NewsCompositionService'
