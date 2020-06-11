@@ -3,12 +3,12 @@ services:
   emailingservice:
     build: './EmailingService'
     ports:
-      - "3000:7000"
+      - "7000:7000"
 
   newscompositionservice:
     build: './NewsCompositionService'
     ports:
-      - "3001:8000"
+      - "8000:8000"
     depends_on: 
       - db
     environment:
@@ -17,12 +17,12 @@ services:
   newspageservice:
     build: './NewsPageService'
     ports:
-      - "3002:5000"
+      - "5000:5000"
 
   subscriptionservice:
     build: './SubscriptionService'
     ports:
-      - "3003:4000"
+      - "4000:4000"
     depends_on: 
       - db
     environment:
