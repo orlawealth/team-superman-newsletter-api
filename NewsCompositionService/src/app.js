@@ -17,6 +17,21 @@ app.get("/", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "public", "index.html"));
 });
 
+app.get("/news",(req, res)=>{
+  News.find()
+  .exec()
+  .then(docs=>{
+    console.log("Retrieved all newsletters");
+    res.status(200).json(docs);
+  })
+  .catch(err=>{
+      console.log(err);
+      res.status(500).json({
+          error:err
+      });
+  });
+});
+
 app.post("/email",(req,res)=>{
 
 console.log(req.body);
