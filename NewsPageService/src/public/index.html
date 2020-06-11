@@ -32,19 +32,56 @@
         });
       });
     </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 50%;
+        margin: 3rem auto;
+        border: 1px solid #bdbdbd;
+        border-radius: 5px;
+        background: url(images.jpeg);
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      .center {
+        text-align: center;
+      }
+      ul {
+        list-style-type: none;
+        height: 200px;
+      }
+      body {
+        background: #d2d2d2;
+      }
+      .input {
+        padding: 5px;
+        width: 60%;
+      } 
+      .input, .btn {
+        margin-top: 5px;
+      }
+    </style>
   </head>
   <body>
-    <h1>NEWS LETTERS</h1>
-    <ul id="news-list"></ul>
+   <div class="container">
+      <h1 class="center bg">NEWS LETTERS</h1>
+      <ul id="news-list">
+      </ul>
 
-    <footer>
-      <div>
-        <input id="email" placeholder="Enter your email" type="text"/>
-        <button class="btn btn-danger" id="button">Subscribe<button>
-        <div><label id="subId"></label></div>
-      </div>
-    </footer>
-
+      <footer class="center">
+        <div>
+          <input id="email" class="input" placeholder="Enter your email" type="text"/>
+          <br>
+          <button class="btn btn-danger" id="button">Subscribe</button>
+          <div>
+            <label id="subId"></label>
+          </div>
+        </div>
+      </footer>
+  </div>
     <script>
         fetch("http://localhost:8000/news")
         .then(response =>response.json())
