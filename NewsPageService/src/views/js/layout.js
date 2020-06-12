@@ -11,9 +11,8 @@ $(document).ready(function(){
         'Content-Type': 'application/json'
         }
       })
-      .then(res=>res.json())
       .then(res=>{
-        subLabel.innerText=res.message;
+        subLabel.innerText="Your subscription was added";
         console.log(res);
       }).catch(err=>{
         console.log(err);
