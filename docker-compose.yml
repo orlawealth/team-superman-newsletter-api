@@ -39,14 +39,9 @@ services:
       - SUBSCRIPTION_SERVER=http://subscriptionservice:11004
       - NEWS_SERVER=http://newscompositionservice:11002
   
-  nginx:
-    image: nginx:latest
+  swagger:
+    build: './swagger'
     ports:
-      - "11005:11005"
-    volumes:
-      - ./default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - subscriptionservice
-      - newspageservice
-      - newscompositionservice
-      - emailingservice
+      - "11010:11010"
+    environment:
+      - PORT=11010
