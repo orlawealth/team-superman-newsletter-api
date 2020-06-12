@@ -3,7 +3,7 @@ info:
   version: "1.0"
   title: Team Superman Newsletter
 # during dev, should point to your local machine
-host: localhost:10010
+host: newsletter.microapi.dev
 # basePath prefixes all resource paths 
 basePath: /
 # 
