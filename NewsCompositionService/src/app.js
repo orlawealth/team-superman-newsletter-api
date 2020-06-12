@@ -48,7 +48,7 @@ _news.save()
       message:"News saved successfully"
     });
 
-    fetch(process.env.EMAILING_SERVER+"/sendemail", {
+    fetch(`${process.env.EMAILING_SERVER}/sendemail`, {
       method: 'POST',
       body: JSON.stringify({
         name:_news.name,
