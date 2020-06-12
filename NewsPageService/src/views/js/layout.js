@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("#button").click(function(){
       var subEmail = document.querySelector("#email").value;
       let subLabel=document.querySelector("#subId");
-      let endpoint ="http://localhost:11003/sendsubscription";
+      let endpoint ="http://localhost:11005/sendsubscription";
       fetch(endpoint,{
         method:"POST",
         body:JSON.stringify({email:subEmail}),

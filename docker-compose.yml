@@ -38,3 +38,15 @@ services:
     environment:
       - SUBSCRIPTION_SERVER=http://subscriptionservice:11004
       - NEWS_SERVER=http://newscompositionservice:11002
+  
+  nginx:
+    image: nginx:latest
+    ports:
+      - "11005:8080"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - subscriptionservice
+      - newspageservice
+      - newscompositionservice
+      - emailingservice
