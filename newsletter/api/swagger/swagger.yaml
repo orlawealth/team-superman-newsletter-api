@@ -1,0 +1,63 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: Team Superman Newsletter
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /subscription/api/v1/subscription/subscribe:
+    post:
+      description: to subscribe to list
+      parameters:
+        - name: email
+          in: query
+          description: Email to subscribe
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            required:
+              - status
+              - message
+              - data
+            properties:
+              status:
+                type: string
+              message:
+                type: string
+              data: 
+                type: object
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  ErrorResponse:
+    required:
+      - status
+      - message
+      - error
+    properties:
+      status:
+        type: string
+      message:
+        type: string
+      error:
+        type: string
