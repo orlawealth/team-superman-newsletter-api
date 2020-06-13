@@ -33,10 +33,12 @@ paths:
       description: to subscribe to list
       parameters:
         - name: email
-          in: query
+          in: body
           description: Email to subscribe
           required: true
           type: string
+          schema:
+            $ref: "#/definitions/SubscriptionBody"
       responses:
         "200":
           description: Success
@@ -54,10 +56,12 @@ paths:
       description: to unsubscribe email to list
       parameters:
         - name: email
-          in: query
+          in: body
           description: Email to unsubscribe
           required: true
           type: string
+          schema:
+            $ref: "#/definitions/SubscriptionBody"
       responses:
         "200":
           description: Success
@@ -104,16 +108,13 @@ paths:
         - "Emailing"
       description: Sends out newsletter as email to all subscribers
       parameters:
-        - name: name
-          in: query
-          description: Name of the newsletter author
+        - name: News body
+          in: body
+          description: author and news to send
           required: true
           type: string
-        - name: content
-          in: query
-          description: The newsletter being sent
-          required: true
-          type: string
+          schema:
+            $ref: "#/definitions/NewsBody"
       responses:
         "200":
           description: Success
@@ -156,16 +157,13 @@ paths:
         - "NewsComposition"
       description: Saves a newsletter and automatically calls the emailing service to send out the newsletter to all active subscribers
       parameters:
-        - name: name
-          in: query
-          description: Name of the newsletter author
+        - name: News body
+          in: body
+          description: author and news to save
           required: true
           type: string
-        - name: content
-          in: query
-          description: The newsletter being sent
-          required: true
-          type: string
+          schema:
+            $ref: "#/definitions/NewsBody"
       responses:
         "200":
           description: Success
@@ -194,10 +192,12 @@ paths:
       description: Sends out an API call to the subscription service endpoint (api/v1/subscription/subscribe) in order to register a new subscriber
       parameters:
         - name: email
-          in: query
+          in: body
           description: Email to subscribe
           required: true
           type: string
+          schema:
+            $ref: "#/definitions/SubscriptionBody"
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -262,6 +262,12 @@ definitions:
         type: string
       content:
         type: string
+  NewsBody:
+    properties:
+      name:
+        type: string
+      content:
+        type: string
   NewsArray:
     type: array
     items:
@@ -273,5 +279,9 @@ definitions:
   SendEmailError:
     properties:
       message:
+        type: string
+  SubscriptionBody:
+    properties:
+      email:
         type: string
 
