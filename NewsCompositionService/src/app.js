@@ -28,7 +28,7 @@ app.get("/news",(req, res)=>{
   .catch(err=>{
       console.log(err);
       res.status(500).json({
-          error:err
+          message:"couldn't retrieve any news"
       });
   });
 });
@@ -59,14 +59,14 @@ _news.save()
         'Content-Type': 'application/json'
       }
     });
-    console.log(result);
-    console.log("news saved successfully");
+  })
+  .then(res=>{
     console.log("calls to send email has been sent");
   })
   .catch(err=>{
       console.log(err);
       res.status(500).json({
-        error:err
+        message:"could not send out calls to send emails"
       });
   });
 });

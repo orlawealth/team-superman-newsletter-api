@@ -6,7 +6,17 @@ info:
 host: newsletter.microapi.dev
 # basePath prefixes all resource paths 
 basePath: /
-# 
+# Tags for api
+tags:
+  - name: "Subscription"
+    description: "Everything about subscription"
+  - name: "Emailing"
+    description: "Everything about using the Emailing api"
+  - name: "NewsComposition"
+    description: "Everything about composing newsletters"
+  - name: "NewsPage"
+    description: "Everything about viewing all the newsletters"
+# Http schemes
 schemes:
   - https
 # format of bodies a client can send (Content-Type)
@@ -18,6 +28,8 @@ produces:
 paths:
   /subscription/api/v1/subscription/subscribe:
     post:
+      tags:
+        - "Subscription"
       description: to subscribe to list
       parameters:
         - name: email
@@ -37,6 +49,8 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /subscription/api/v1/subscription/unsubscribe:
     patch:
+      tags:
+        - "Subscription"
       description: to unsubscribe email to list
       parameters:
         - name: email
@@ -56,6 +70,8 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /subscription/api/v1/subscription:
     get:
+      tags:
+        - "Subscription"
       description: get all subscriptions
       responses:
         "200":
@@ -69,6 +85,8 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   /subscription/api/v1/subscription/active:
     get:
+      tags:
+        - "Subscription"
       description: get all active subscriptions
       responses:
         "200":
@@ -80,6 +98,106 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /emailing/sendemail:
+    post:
+      tags:
+        - "Emailing"
+      description: Sends out newsletter as email to all subscribers
+      parameters:
+        - name: name
+          in: query
+          description: Name of the newsletter author
+          required: true
+          type: string
+        - name: content
+          in: query
+          description: The newsletter being sent
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SendEmailResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/SendEmailError"
+  /compose:
+    get:
+      tags:
+        - "NewsComposition"
+      description: Returns the news composition frontend page
+      responses:
+        "200":
+          description: Success
+        # responses may fall through to errors
+        default:
+          description: Error
+  /compose/news:
+    get:
+      tags:
+        - "NewsComposition"
+      description: Retrieves all saved newsletters
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/NewsArray"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/SendEmailError"
+  /compose/email:
+    post:
+      tags:
+        - "NewsComposition"
+      description: Saves a newsletter and automatically calls the emailing service to send out the newsletter to all active subscribers
+      parameters:
+        - name: name
+          in: query
+          description: Name of the newsletter author
+          required: true
+          type: string
+        - name: content
+          in: query
+          description: The newsletter being sent
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/SendEmailResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/SendEmailError"
+  /newspage:
+    get:
+      tags:
+        - "NewsPage"
+      description: Sends out an API call to the news composition service endpoint (compose/news) to retrieve all the newsletters and renders it on the news frontend page
+      responses:
+        "200":
+          description: Success
+        # responses may fall through to errors
+        default:
+          description: Error
+  /newspage/sendsubscription:
+    post:
+      tags:
+        - "NewsPage"
+      description: Sends out an API call to the subscription service endpoint (api/v1/subscription/subscribe) in order to register a new subscriber
+      parameters:
+        - name: email
+          in: query
+          description: Email to subscribe
+          required: true
+          type: string
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
@@ -136,3 +254,24 @@ definitions:
         type: string
       error:
         type: string
+  News:
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      content:
+        type: string
+  NewsArray:
+    type: array
+    items:
+      $ref: "#/definitions/News"
+  SendEmailResponse:
+    properties:
+      message:
+        type: string
+  SendEmailError:
+    properties:
+      message:
+        type: string
+
